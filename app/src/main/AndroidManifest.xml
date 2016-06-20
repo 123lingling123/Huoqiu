@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lsl.huoqiu" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/study_icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:name=".AppContext"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".activity.FirstActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.ui.MainActivity"></activity>
+        <activity android:name=".activity.BaseActivity"></activity>
+        <activity android:name=".activity.ui.HuoQiuProgressActivity"></activity>
+        <activity android:name=".activity.ui.HuoQiuMainActivity"></activity>
+        <activity android:name=".activity.ui.FengActivity"></activity>
+        <activity android:name=".activity.ui.VerticalViewPagerActivity"></activity>
+        <activity android:name=".activity.ui.GussActivity"></activity>
+        <activity android:name=".activity.ui.GussLayoutActivity"></activity>
+        <activity android:name=".activity.ui.PullZoomActivity"></activity>
+        <activity android:name=".activity.ui.HqPlanRoundActivity"></activity>
+        <activity android:name=".activity.ui.MultiViewPagerActivity"></activity>
+        <activity android:name=".activity.ui.HqDialogActivity"></activity>
+        <activity android:name=".activity.ui.HqTextActivity"></activity>
+        <activity android:name=".activity.ui.AutoDrawable"></activity>
+        <activity android:name=".activity.FunctionActivity"></activity>
+        <activity android:name=".activity.function.AlarmActivity"></activity>
+
+        <receiver android:name=".activity.function.AlarmActivity$alarmreceiver"
+            ></receiver>
+    </application>
+
+</manifest>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PieProgress">
+        <attr name="pie_textColor" format="color"></attr>
+        <attr name="pie_textSize" format="dimension"></attr>
+        <attr name="pie_backGround" format="color"></attr>
+        <attr name="pie_progressOne" format="color"></attr>
+        <attr name="pie_progressTwo" format="color"></attr>
+        <attr name="pie_progressThree" format="color"></attr>
+        <attr name="pie_progressFour" format="color"></attr>
+        <attr name="pie_progressWidth" format="dimension"></attr>
+        <attr name="pie_max" format="dimension"></attr>
+        <attr name="pie_style">
+            <enum name="STROKE" value="0"></enum>
+            <enum name="FILL" value="1"></enum>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="LabelRadioButton">
+        <attr name="label_textColor" format="color"></attr>
+        <attr name="label_textSize" format="dimension"></attr>
+        <attr name="label_backColor" format="color"></attr>
+        <attr name="label_backSize" format="dimension"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="PullToZoomView">
+        <attr name="headerView" format="reference" />
+        <attr name="contentView" format="reference" />
+        <attr name="zoomView" format="reference" />
+        <attr name="isHeaderParallax" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="RoundAngleImageView">
+        <attr name="roundAngleWidth" format="dimension" />
+        <attr name="roundHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PullToRefreshListView">
+        <attr name="is_show_header" format="boolean"></attr>
+    </declare-styleable>
+</resources>

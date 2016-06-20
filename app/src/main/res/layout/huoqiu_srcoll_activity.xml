@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/saddlebrown"
+                android:orientation="vertical">
+
+    <com.lsl.huoqiu.widget.pullzoom.PullToZoomScrollView
+        android:id="@+id/hq_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.lsl.huoqiu.widget.pullzoom.PullToZoomScrollView>
+
+    <RelativeLayout
+        android:id="@+id/view_contain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.lsl.huoqiu.widget.HuoQiuView
+            android:id="@+id/hq_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <RelativeLayout
+            android:id="@+id/text_contain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/text_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+
+                android:text="复合年化收益率"/>
+            <TextView
+                android:id="@+id/have_rate"
+                android:layout_above="@+id/text_rate"
+                android:layout_width="wrap_content"
+                android:paddingBottom="@dimen/dp10"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:text="10.00%"/>
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="wrap_content"
+                android:layout_above="@+id/have_rate"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dp10"
+                android:layout_centerHorizontal="true"
+                android:text="火球卫士专享"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp10"
+                android:layout_below="@+id/text_rate"
+                android:layout_centerHorizontal="true"
+                android:text="随存随去"/>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_alignParentBottom="true"
+               android:weightSum="4"
+               android:gravity="right"
+               android:layout_height="100dp">
+               <View
+                   android:id="@+id/right"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"></View>
+
+           </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

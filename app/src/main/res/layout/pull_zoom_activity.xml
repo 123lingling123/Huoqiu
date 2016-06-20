@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
+
+    <com.lsl.huoqiu.widget.pullzoom.PullToZoomScrollView
+        android:id="@+id/pull_zoom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.lsl.huoqiu.widget.pullzoom.PullToZoomScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:background="@color/white">
+
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="标题"
+        android:textColor="@color/red"
+        android:textSize="20dp"/>
+</FrameLayout>

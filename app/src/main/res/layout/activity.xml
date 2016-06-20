@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="@dimen/dp100"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/dp5"
+        android:background="@drawable/small_huoqiu_bg_shadow"
+        android:layout_height="@dimen/dp100"></LinearLayout>
+    <LinearLayout
+        android:layout_width="95dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/dp5"
+        android:layout_marginLeft="@dimen/dp10"
+        android:background="@drawable/small_huoqiu_bg_shadow_bottom"
+        android:layout_height="@dimen/dp100"></LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"></View>
+
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <com.lsl.huoqiu.widget.LabelRadioButton
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/home_icon"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="第一"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/frame"
+            android:background="@color/black"></View>
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/home_icon"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="第一"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/frame"
+            android:background="@color/black"></View>
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/home_icon"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="第一"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/frame"
+            android:background="@color/black"></View>
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/home_icon"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="第一"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"/>
+    </RadioGroup>
+</RelativeLayout>
