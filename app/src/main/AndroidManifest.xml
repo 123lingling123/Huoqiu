@@ -36,8 +36,13 @@
         <activity android:name=".activity.FunctionActivity"></activity>
         <activity android:name=".activity.function.AlarmActivity"></activity>
 
-        <receiver android:name=".activity.function.AlarmActivity$alarmreceiver"
-            ></receiver>
+        <!-- 广播接收器-->
+        <receiver android:name=".receiver.PushReceiver"></receiver>
+        <receiver android:name=".receiver.PushDeleteReceiver"></receiver>
+        <receiver android:name=".receiver.PushHandleReceiver"></receiver>
     </application>
 
+
+    <!-- 开启震动-->
+    <uses-permission android:name="android.permission.VIBRATE"/>
 </manifest>

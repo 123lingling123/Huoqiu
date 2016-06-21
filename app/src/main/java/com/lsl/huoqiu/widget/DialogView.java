@@ -50,7 +50,7 @@ public class DialogView extends View {
         Bitmap bitcircle = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_4444);
         Canvas canvascicle = new Canvas(bitcircle);
         Paint paintcicle = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paintcicle.setColor(0xAA000000);
+        paintcicle.setColor(0xBF000000);
         canvascicle.drawRect(0, 0, getWidth(), getHeight(), paintcicle);
 
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
