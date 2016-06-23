@@ -80,7 +80,7 @@ public class AlarmActivity extends AppCompatActivity{
         }
         //打印JsonObject的内容
         Log.e("AlarmActivity++++JsonObejct",jsonObject.toString());
-//        textView.setText(jsonObject.toString());
+        textView.setText(jsonObject.toString());
         //开始解析Json串，并将其转化为JavaBean
         try {
             BaseBean<List<Person>> personBaseBean=new  BaseBeanParser<BaseBean<List<Person>>>(
@@ -98,7 +98,7 @@ public class AlarmActivity extends AppCompatActivity{
             }
             //打印JavaBean 的内容
             Log.e("AlarmActivity++++JsonObejct",sb.toString());
-//            textviewparser.setText(sb.toString());
+            textviewparser.setText(sb.toString());
         } catch (ParseException e) {
             e.printStackTrace();
         }

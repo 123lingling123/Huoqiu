@@ -37,7 +37,7 @@ public class FunctionActivity extends AppCompatActivity {
                 if (position==0){
                     intent.setClass(FunctionActivity.this,AlarmActivity.class);
                 }else if (position==1){
-                    intent.setClass(FunctionActivity.this,HuoQiuProgressActivity.class);
+//                    intent.setClass(FunctionActivity.this,HuoQiuProgressActivity.class);
                 }
                 startActivity(intent);
             }
