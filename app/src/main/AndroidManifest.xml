@@ -33,6 +33,7 @@
         <activity android:name=".activity.ui.HqDialogActivity"></activity>
         <activity android:name=".activity.ui.HqTextActivity"></activity>
         <activity android:name=".activity.ui.AutoDrawable"></activity>
+        <activity android:name=".activity.ui.StructDetaliProgressActivity"></activity>
         <activity android:name=".activity.FunctionActivity"></activity>
         <activity android:name=".activity.function.AlarmActivity"></activity>
 

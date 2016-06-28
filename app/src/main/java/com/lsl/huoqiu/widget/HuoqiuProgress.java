@@ -68,6 +68,7 @@ public class HuoqiuProgress extends View {
         mPathArc.addArc(new RectF(0, mHeight-progressHeight, progressHeight, mHeight), 90, 270);//左半圆，其实是一个180°的扇形
         mPathArc.addRect(progressHeight / 2, mHeight-progressHeight, mWidth - progressHeight / 2, mHeight, Path.Direction.CW);
         mPathArc.addArc(new RectF(mWidth - progressHeight, mHeight-progressHeight, mWidth, mHeight), 180, 360);//右半圆，其实是一个180°的扇形
+
     }
 
     @Override

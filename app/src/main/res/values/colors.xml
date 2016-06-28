@@ -174,4 +174,13 @@
     <color name="huoqiuRedColor">#ed6343</color>
     <color name="transpacneColor">#ebebeb</color>
     <color name="huoqiuSmall">#fc6366</color>
+
+
+
+    <color name="struct_backgroud">#f0f1f4</color>
+    <color name="struct_right_red">#fe2d4a</color>
+    <color name="struct_left_red">#ff7484</color>
+    <color name="struct_text_red">#fa4040</color>
+    <color name="struct_text_gray">#98999a</color>
+
 </resources>

@@ -21,6 +21,7 @@ import com.lsl.huoqiu.activity.ui.HuoQiuProgressActivity;
 import com.lsl.huoqiu.activity.ui.MainActivity;
 import com.lsl.huoqiu.activity.ui.MultiViewPagerActivity;
 import com.lsl.huoqiu.activity.ui.PullZoomActivity;
+import com.lsl.huoqiu.activity.ui.StructDetaliProgressActivity;
 import com.lsl.huoqiu.activity.ui.VerticalViewPagerActivity;
 
 import java.util.ArrayList;
@@ -71,6 +72,8 @@ public class BaseActivity extends AppCompatActivity{
                     intent.setClass(BaseActivity.this,HqTextActivity.class);
                 }else if (position==12){
                     intent.setClass(BaseActivity.this,AutoDrawable.class);
+                }else if (position==13){
+                    intent.setClass(BaseActivity.this,StructDetaliProgressActivity.class);
                 }
                 startActivity(intent);
             }
@@ -93,6 +96,7 @@ public class BaseActivity extends AppCompatActivity{
         data.add("火球复投换地方的弹窗效果");
         data.add("字符串中有数字就变大的效果");
         data.add("代码设置Drawable");
+        data.add("结构化在投详情柱状图");
 
         return data;
     }
