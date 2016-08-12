@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.lsl.huoqiu.R;
 import com.lsl.huoqiu.activity.function.AlarmActivity;
+import com.lsl.huoqiu.activity.function.OKHttpActivity;
 import com.lsl.huoqiu.activity.ui.HuoQiuProgressActivity;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class FunctionActivity extends AppCompatActivity {
                 if (position==0){
                     intent.setClass(FunctionActivity.this,AlarmActivity.class);
                 }else if (position==1){
-//                    intent.setClass(FunctionActivity.this,HuoQiuProgressActivity.class);
+                    intent.setClass(FunctionActivity.this,OKHttpActivity.class);
                 }
                 startActivity(intent);
             }
@@ -48,7 +49,7 @@ public class FunctionActivity extends AppCompatActivity {
 
         data = new ArrayList<String>();
         data.add("时钟提醒");
-        data.add("暂无");
+        data.add("OKHTTP网络连接");
 
 
         return data;

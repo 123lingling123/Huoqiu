@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Created by Forrest on 16/4/20.
  */
-public class BaseActivity extends AppCompatActivity{
+public class UIActivity extends AppCompatActivity{
     private ListView listview;
     private ArrayAdapter<String> adapter;
     List<String> data = new ArrayList<String>();
@@ -47,33 +47,33 @@ public class BaseActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position==0){
-                    intent.setClass(BaseActivity.this,MainActivity.class);
+                    intent.setClass(UIActivity.this,MainActivity.class);
                 }else if (position==1){
-                    intent.setClass(BaseActivity.this,HuoQiuProgressActivity.class);
+                    intent.setClass(UIActivity.this,HuoQiuProgressActivity.class);
                 }else if (position==2){
-                    intent.setClass(BaseActivity.this,HuoQiuMainActivity.class);
+                    intent.setClass(UIActivity.this,HuoQiuMainActivity.class);
                 }else if (position==3){
-                    intent.setClass(BaseActivity.this,FengActivity.class);
+                    intent.setClass(UIActivity.this,FengActivity.class);
                 }else if (position==4){
-                    intent.setClass(BaseActivity.this,VerticalViewPagerActivity.class);
+                    intent.setClass(UIActivity.this,VerticalViewPagerActivity.class);
                 }else if (position==5){
-                    intent.setClass(BaseActivity.this,GussActivity.class);
+                    intent.setClass(UIActivity.this,GussActivity.class);
                 }else if (position==6){
-                    intent.setClass(BaseActivity.this,GussLayoutActivity.class);
+                    intent.setClass(UIActivity.this,GussLayoutActivity.class);
                 }else if (position==7){
-                    intent.setClass(BaseActivity.this,PullZoomActivity.class);
+                    intent.setClass(UIActivity.this,PullZoomActivity.class);
                 }else if (position==8){
-                    intent.setClass(BaseActivity.this,HqPlanRoundActivity.class);
+                    intent.setClass(UIActivity.this,HqPlanRoundActivity.class);
                 }else if (position==9){
-                    intent.setClass(BaseActivity.this,MultiViewPagerActivity.class);
+                    intent.setClass(UIActivity.this,MultiViewPagerActivity.class);
                 }else if (position==10){
-                    intent.setClass(BaseActivity.this,HqDialogActivity.class);
+                    intent.setClass(UIActivity.this,HqDialogActivity.class);
                 }else if (position==11){
-                    intent.setClass(BaseActivity.this,HqTextActivity.class);
+                    intent.setClass(UIActivity.this,HqTextActivity.class);
                 }else if (position==12){
-                    intent.setClass(BaseActivity.this,AutoDrawable.class);
+                    intent.setClass(UIActivity.this,AutoDrawable.class);
                 }else if (position==13){
-                    intent.setClass(BaseActivity.this,StructDetaliProgressActivity.class);
+                    intent.setClass(UIActivity.this,StructDetaliProgressActivity.class);
                 }
                 startActivity(intent);
             }

@@ -10,7 +10,7 @@
         android:name=".AppContext"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activity.FirstActivity"
+            android:name=".activity.StartActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" >
             <intent-filter>
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.ui.MainActivity"></activity>
-        <activity android:name=".activity.BaseActivity"></activity>
+        <activity android:name=".activity.UIActivity"></activity>
         <activity android:name=".activity.ui.HuoQiuProgressActivity"></activity>
         <activity android:name=".activity.ui.HuoQiuMainActivity"></activity>
         <activity android:name=".activity.ui.FengActivity"></activity>
@@ -36,11 +36,22 @@
         <activity android:name=".activity.ui.StructDetaliProgressActivity"></activity>
         <activity android:name=".activity.FunctionActivity"></activity>
         <activity android:name=".activity.function.AlarmActivity"></activity>
+        <activity android:name=".activity.function.OKHttpActivity"></activity>
+        <activity android:name=".game.GameActivity"></activity>
+        <activity android:name=".game.model.SingleGameActivity"></activity>
+        <activity android:name=".activity.TestActivity"></activity>
+        <activity android:name=".activity.GameDemoActivity"></activity>
+        <activity android:name=".activity.ui.PercentViewActivity"></activity>
 
         <!-- 广播接收器-->
         <receiver android:name=".receiver.PushReceiver"></receiver>
         <receiver android:name=".receiver.PushDeleteReceiver"></receiver>
         <receiver android:name=".receiver.PushHandleReceiver"></receiver>
+        <receiver android:name=".receiver.MyBroadCastReceiver">
+            <intent-filter>
+                <action android:name="com.lsl.huoqiu.test"></action>
+            </intent-filter>
+        </receiver>
     </application>
 
 

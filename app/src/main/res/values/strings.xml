@@ -6,4 +6,28 @@
     <string name="pull_to_refresh_refreshing_label">加载中...</string>
     <string name="pull_to_refresh_tap_label">下拉可以刷新</string>
     <string name="pull_to_refresh_update">最近更新：</string>
+
+
+    <!-- Accessibility description sent when user starts drawing a lock pattern. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_start">Pattern started</string>
+    <!-- Accessibility description sent when the pattern times out and is cleared. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_cleared">Pattern cleared</string>
+    <!-- Accessibility description sent when user adds a cell to the pattern. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_cell_added">Cell added</string>
+    <!-- Accessibility description sent when user completes drawing a pattern. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_detected">Pattern completed</string>
+
+
+    <string name="header">2048</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="new_game">New Game</string>
+
+    <string name="high_score">HIGH SCORE</string>
+    <string name="score">SCORE</string>
+    <string name="instructions">Swipe to move. 2 + 2 = 4. Reach 2048.</string>
+    <string name="you_win">You Win!</string>
+    <string name="game_over">Game Over!</string>
+    <string name="go_on">Tap to Continue</string>
+    <string name="for_now">For now...</string>
+    <string name="endless">"Endless" Mode</string>
 </resources>

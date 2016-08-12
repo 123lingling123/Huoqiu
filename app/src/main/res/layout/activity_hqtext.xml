@@ -20,4 +20,13 @@
         android:gravity="center"
         android:textSize="30dp"
         android:text="asdfasdf123"/>
+
+    <com.lsl.huoqiu.widget.RedPointTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="消息中心"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        />
 </LinearLayout>

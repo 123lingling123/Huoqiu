@@ -41,6 +41,7 @@ public class MultiViewPagerActivity extends AppCompatActivity implements  PullTo
         listView= (PullToRefreshListView) findViewById(R.id.ptfListView);
 
 //        viewPager=new ViewPager(MultiViewPagerActivity.this);
+        //clipChild用来定义他的子控件是否要在他应有的边界内进行绘制。 默认情况下，clipChild被设置为true。 也就是不允许进行扩展绘制。
         viewPager.setClipChildren(false);
 
 //        viewPager= (ViewPager) findViewById(R.id.viewpager);
@@ -118,7 +119,8 @@ public class MultiViewPagerActivity extends AppCompatActivity implements  PullTo
             ImageView imageView = new ImageView(MultiViewPagerActivity.this);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setImageResource(R.mipmap.test);
-            ((ViewPager)container).addView(imageView, position);
+//            ((ViewPager)container).addView(imageView, position);//如果有position会引起数组越界
+            ((ViewPager)container).addView(imageView);
             return imageView;
 
         }

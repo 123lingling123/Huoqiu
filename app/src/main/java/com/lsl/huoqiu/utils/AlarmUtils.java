@@ -8,6 +8,7 @@ import java.util.Comparator;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -83,6 +84,9 @@ public class AlarmUtils {
                 intent.putExtra("isPush", false);
                 PendingIntent pendIntent = PendingIntent.getBroadcast(context,
                         bean.getMsg_id(), intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                //setImpl(type, triggerAtMillis, WINDOW_EXACT, 0, 0, operation, null, null);
+                alarmMgr.setExact(AlarmManager.RTC_WAKEUP, bean.getTime(), pendIntent);
+                //setImpl(type, triggerAtMillis, legacyExactLength(), 0, 0, operation, null, null);
                 alarmMgr.set(AlarmManager.RTC_WAKEUP, bean.getTime(), pendIntent);
                 break;
             }

@@ -9,14 +9,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.lsl.huoqiu.R;
+import com.lsl.huoqiu.game.model.SingleGameActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Forrest on 16/6/20.
+ * Created by Forrest on 16/8/11.
  */
-public class FirstActivity extends AppCompatActivity {
+public class GameDemoActivity extends AppCompatActivity {
     private ListView listview;
     private ArrayAdapter<String> adapter;
     List<String> data = new ArrayList<String>();
@@ -33,9 +34,9 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position==0){
-                    intent.setClass(FirstActivity.this,BaseActivity.class);
+                    intent.setClass(GameDemoActivity.this,com.lsl.huoqiu.game.GameActivity.class);
                 }else if (position==1){
-                    intent.setClass(FirstActivity.this,FunctionActivity.class);
+                    intent.setClass(GameDemoActivity.this,SingleGameActivity.class);
                 }
                 startActivity(intent);
             }
@@ -45,8 +46,8 @@ public class FirstActivity extends AppCompatActivity {
     private List<String> getData(){
 
         data = new ArrayList<String>();
-        data.add("火球UI类");
-        data.add("火球功能类");
+        data.add("2048游戏");
+        data.add("2048游戏Model");
 
 
         return data;

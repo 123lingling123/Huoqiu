@@ -14,7 +14,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.lsl.huoqiu.activity.FirstActivity;
+import com.lsl.huoqiu.activity.StartActivity;
 import com.lsl.huoqiu.bean.AlarmBean;
 import com.lsl.huoqiu.utils.AlarmUtils;
 
@@ -77,7 +77,7 @@ public class PushReceiver extends BroadcastReceiver {
         NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
         bigTextStyle.setBigContentTitle(title).bigText(content);
 
-        Intent intentBase=new Intent(ctx, FirstActivity.class);
+        Intent intentBase=new Intent(ctx, StartActivity.class);
         //必需要添加FLAG，否则启动不了Activity
         intentBase.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS

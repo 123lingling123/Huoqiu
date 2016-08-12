@@ -60,7 +60,6 @@ public class AlarmActivity extends AppCompatActivity{
         gsonParse();
     }
 
-
     private void gsonParse(){
         JSONObject jsonObject=new JSONObject();
         //创建一个Json串
