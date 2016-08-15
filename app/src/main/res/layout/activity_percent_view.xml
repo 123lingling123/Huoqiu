@@ -3,5 +3,11 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <com.lsl.huoqiu.widget.PercentView
+        android:id="@+id/percent_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/wheat"
+        ></com.lsl.huoqiu.widget.PercentView>
 
 </LinearLayout>

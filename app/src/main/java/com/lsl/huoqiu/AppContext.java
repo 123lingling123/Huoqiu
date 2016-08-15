@@ -18,7 +18,8 @@ public class AppContext extends Application {
     public void onCreate() {
         super.onCreate();
         context=this;
-        CrashHandler.getInstance().init(getApplicationContext());
+        //收集错误日志
+//        CrashHandler.getInstance().init(getApplicationContext());
         Config.init(this);
     }
 

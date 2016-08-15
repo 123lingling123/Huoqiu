@@ -20,6 +20,7 @@ import com.lsl.huoqiu.activity.ui.HuoQiuMainActivity;
 import com.lsl.huoqiu.activity.ui.HuoQiuProgressActivity;
 import com.lsl.huoqiu.activity.ui.MainActivity;
 import com.lsl.huoqiu.activity.ui.MultiViewPagerActivity;
+import com.lsl.huoqiu.activity.ui.PercentViewActivity;
 import com.lsl.huoqiu.activity.ui.PullZoomActivity;
 import com.lsl.huoqiu.activity.ui.StructDetaliProgressActivity;
 import com.lsl.huoqiu.activity.ui.VerticalViewPagerActivity;
@@ -74,6 +75,8 @@ public class UIActivity extends AppCompatActivity{
                     intent.setClass(UIActivity.this,AutoDrawable.class);
                 }else if (position==13){
                     intent.setClass(UIActivity.this,StructDetaliProgressActivity.class);
+                }else if (position==14){
+                    intent.setClass(UIActivity.this,PercentViewActivity.class);
                 }
                 startActivity(intent);
             }
@@ -97,6 +100,7 @@ public class UIActivity extends AppCompatActivity{
         data.add("字符串中有数字就变大的效果");
         data.add("代码设置Drawable");
         data.add("结构化在投详情柱状图");
+        data.add("击败百分比");
 
         return data;
     }
