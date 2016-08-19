@@ -18,6 +18,7 @@ import com.lsl.huoqiu.activity.ui.HqPlanRoundActivity;
 import com.lsl.huoqiu.activity.ui.HqTextActivity;
 import com.lsl.huoqiu.activity.ui.HuoQiuMainActivity;
 import com.lsl.huoqiu.activity.ui.HuoQiuProgressActivity;
+import com.lsl.huoqiu.activity.ui.LineChartViewActivity;
 import com.lsl.huoqiu.activity.ui.MainActivity;
 import com.lsl.huoqiu.activity.ui.MultiViewPagerActivity;
 import com.lsl.huoqiu.activity.ui.PercentViewActivity;
@@ -77,6 +78,8 @@ public class UIActivity extends AppCompatActivity{
                     intent.setClass(UIActivity.this,StructDetaliProgressActivity.class);
                 }else if (position==14){
                     intent.setClass(UIActivity.this,PercentViewActivity.class);
+                }else if (position==15){
+                    intent.setClass(UIActivity.this,LineChartViewActivity.class);
                 }
                 startActivity(intent);
             }
@@ -101,6 +104,7 @@ public class UIActivity extends AppCompatActivity{
         data.add("代码设置Drawable");
         data.add("结构化在投详情柱状图");
         data.add("击败百分比");
+        data.add("折线图");
 
         return data;
     }

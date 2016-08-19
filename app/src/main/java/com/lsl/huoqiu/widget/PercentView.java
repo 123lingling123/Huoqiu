@@ -1,5 +1,7 @@
 package com.lsl.huoqiu.widget;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,9 +15,12 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.SweepGradient;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,7 +28,10 @@ import com.lsl.huoqiu.R;
 
 
 /**
- * 用户击败百分比图
+ * 用户击败百分比
+ * 设计思路：首先定义最外层小圆点的半径，外层细圆弧的宽度，内存宽圆弧的宽度，两个圆弧中间间隔的宽度，
+ * 然后利用旋转画布来绘制文本，接着绘制两个圆弧的底色，接着根据传过来的数据绘制渐变色圆弧和原点
+ * 利用ValueAnimator来设置动画效果
  * Created by Forrest on 16/8/12.
  */
 public class PercentView extends View{
@@ -82,6 +90,18 @@ public class PercentView extends View{
     private String aim;
     private int textSizeTag;//名列前茅字体大小
     private int textSizeAim;//击败百分比字体大小
+
+    // 动效过程监听器
+    private ValueAnimator.AnimatorUpdateListener mUpdateListener;
+    private Animator.AnimatorListener mAnimatorListener;
+    //过程动画
+    private ValueAnimator mValueAnimator;
+    // 用于控制动画状态转换
+    private Handler mAnimatorHandler;
+    // 默认的动效周期 2s
+    private int defaultDuration = 2000;
+
+
     public PercentView(Context context) {
         super(context);
         initView(context);
@@ -135,11 +155,14 @@ public class PercentView extends View{
 
     }
 
-
+    private int count=0;
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        Log.i("PercentVIew", "开始绘制" + count);
+        long startTime=System.currentTimeMillis();
+        count++;
         width = getWidth(); //获取宽度
         height = getHeight();//获取高度
         mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
@@ -156,8 +179,8 @@ public class PercentView extends View{
         //将Bitmap画到Canvas
         paintText(mCanvas);
         canvas.drawBitmap(mBitmap, 0, 0, null);
-
-
+        long endTime=System.currentTimeMillis();
+        Log.i("PercentVIew", "绘制结束" + (endTime-startTime));
     }
 
     /**
@@ -204,6 +227,9 @@ public class PercentView extends View{
     /***
      * 4个色值由浅到深分别是 ffd200 ff5656 fa4040 f60157
      * 等级划分：0-20% 再接再厉   21-60% 技高一筹   61-90% 名列前茅   90以上 理财达人
+     * 绘制外层和内层的颜色线条
+     * 主要用到Xfermode的SRC_ATOP显示上层绘制
+     * setStrokeCap   Paint.Cap.ROUND设置为圆角矩形
      */
     private void paintPercent(double percent,double aimPercent,Canvas canvas){
         double roateAngel=percent*0.01*225;
@@ -258,14 +284,15 @@ public class PercentView extends View{
         shaderPaint.setStrokeWidth(insideArcWidth);
         shaderPaint.setStyle(Paint.Style.STROKE);
         //内弧半径
-        canvas.drawArc(new RectF(width/2 - insideArcRadius, radius - insideArcRadius, width/2  + insideArcRadius, radius + insideArcRadius),
-                        formDegree,
-                        toDegree, false, shaderPaint);
+        canvas.drawArc(new RectF(width / 2 - insideArcRadius, radius - insideArcRadius, width / 2 + insideArcRadius, radius + insideArcRadius),
+                formDegree,
+                toDegree, false, shaderPaint);
 
     }
 
     /***
      * 绘制外部彩色线条和小红圈
+     * 利用PathMeasure的getTranslate测量出需要绘制的圆弧的末端的坐标位置
      * @param formDegree 起始角度
      * @param toDegree 旋转角度
      * @param canvas 画布
@@ -290,7 +317,7 @@ public class PercentView extends View{
         canvas.drawBitmap(bitmap, mMatrix, bitmapPaint);//绘制
         bitmapPaint.setColor(color);
         //绘制实心小圆圈
-        canvas.drawCircle(pos[0], pos[1], 5, bitmapPaint);
+        canvas.drawCircle(pos[0], pos[1], 8, bitmapPaint);
     }
     /***
      * 4个色值由浅到深分别是 ffd200 ff5656 fa4040 f60157
@@ -317,60 +344,36 @@ public class PercentView extends View{
             float leftLength=textPaint.measureText("你击败了");
             float rightLength=textPaint.measureText("的用户");
             float centerLength=textPaint.measureText(aim+"%");
-            float rightOffset=textSizeAim/2;//像右边的偏移量
-            canvas.drawText("你击败了",width/2-leftLength/2-centerLength/2+rightOffset,radius + textSizeAim, textPaint);
-            canvas.drawText("的用户",width/2+rightLength/2+centerLength/2+rightOffset,radius + textSizeAim, textPaint);
+            float rightOffest=textSizeAim/2;//
+            canvas.drawText("你击败了",width/2-leftLength/2-centerLength/2+rightOffest,radius + textSizeAim, textPaint);
+            canvas.drawText("的用户",width/2+rightLength/2+centerLength/2+rightOffest,radius + textSizeAim, textPaint);
             textPaint.setColor(Color.parseColor("#fa4040"));
-            canvas.drawText(aim+"%",width/2+rightOffset,radius + textSizeAim, textPaint);
+            canvas.drawText(aim+"%",width/2+rightOffest,radius + textSizeAim, textPaint);
 
         }
 
 
     }
 
-//
-//    private void calculateItemPositions(double aimPercent,double increaseValue,Canvas canvas,Bitmap bitmap) {
-//        //内切弧形路径
-//        //以圆点坐标（x，y）为中心画一个矩形RectF
-//        RectF area = new RectF(width/2  - outerArcRadius, radius - outerArcRadius, width/2  + outerArcRadius, radius + outerArcRadius);
-//        Path orbit = new Path();
-//        //通过Path类画一个90度（180—270）的内切圆弧路径
-//        orbit.addArc(area,  (float) (180 - floatAngel), (float) ((180 +2*floatAngel)*aimPercent*0.01));
-//        // 创建 PathMeasure
-//        PathMeasure measure = new PathMeasure(orbit, false);
-//
-//
-//        // 计算当前的位置在总长度上的比例[0,1]
-//        currentValue += increaseValue/aimPercent;
-//        if (currentValue >= 1) {
-//            currentValue = 1;
-//        }
-////        LogUtils.i("增长角度increaseValue"+increaseValue);
-////               LogUtils.i("增长的比例currentValue"+currentValue);
-//
-//        // 获取当前位置的坐标以及趋势
-//        measure.getPosTan(measure.getLength() * currentValue, pos, tan);
-//        mMatrix.reset();                                                        // 重置Matrix
-////        float degrees = (float) (Math.atan2(tan[1], tan[0]) * 180.0 / Math.PI); // 计算图片旋转角度
-////        mMatrix.postRotate(degrees, mBitmap.getWidth() / 2, mBitmap.getHeight() / 2);   // 旋转图片
-//        mMatrix.postTranslate(pos[0] - bitmap.getWidth() / 2, pos[1] - bitmap.getHeight() / 2);   // 将图片绘制中心调整到与当前点重合
-//
-//        canvas.drawBitmap(bitmap, mMatrix, bitmapPaint);
-//
-//    }
-
     /**
      * 设置角度变化，刷新界面
-     * @param angel 旋转进度
      * @param aimPercent 目标百分比
      */
-    public void setAngel(double angel,double aimPercent){
-        if (angel<0){
-            throw new IllegalArgumentException("Angel must more than 0");
+    public void setAngel(double aimPercent){
+        //两边监测
+        if (aimPercent<1){
+            aimPercent=1;
+        }else if (aimPercent>99){
+            aimPercent=99;
         }
-        this.mAngel=angel;
         this.aimPercent=aimPercent;
-        postInvalidate();
+        initListener();
+
+        initHandler();
+
+        initAnimator();
+        mValueAnimator.start();
+
     }
 
     /**
@@ -381,8 +384,70 @@ public class PercentView extends View{
     public void setRankText(String tag,String aim){
         this.tag=tag;
         this.aim=aim;
-        postInvalidate();
+        mAnimatorHandler.sendEmptyMessage(1);
 
     }
+
+    private void initListener() {
+        mUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mAngel = (float) animation.getAnimatedValue()*aimPercent;
+//                Log.i("TAG", "mAnimatorValue="+mAnimatorValue);
+                invalidate();
+            }
+        };
+
+        mAnimatorListener = new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                // getHandle发消息通知动画状态更新
+                mAnimatorHandler.sendEmptyMessage(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        };
+    }
+
+    private void initHandler() {
+        mAnimatorHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 0:
+                        mValueAnimator.removeAllUpdateListeners();
+                        mValueAnimator.removeAllListeners();
+                        break;
+                    case 1:
+                        invalidate();
+                        break;
+                }
+
+            }
+        };
+    }
+
+    private void initAnimator() {
+        mValueAnimator = ValueAnimator.ofFloat(0, 1).setDuration(defaultDuration);
+
+        mValueAnimator.addUpdateListener(mUpdateListener);
+
+        mValueAnimator.addListener(mAnimatorListener);
+    }
+
 
 }

@@ -10,4 +10,10 @@
         android:background="@color/wheat"
         ></com.lsl.huoqiu.widget.PercentView>
 
+
+    <com.lsl.huoqiu.widget.LineChartView
+        android:id="@+id/linear_chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
 </LinearLayout>

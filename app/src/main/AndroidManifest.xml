@@ -42,6 +42,7 @@
         <activity android:name=".activity.TestActivity"></activity>
         <activity android:name=".activity.GameDemoActivity"></activity>
         <activity android:name=".activity.ui.PercentViewActivity" android:hardwareAccelerated="false"></activity>
+        <activity android:name=".activity.ui.LineChartViewActivity" android:hardwareAccelerated="false"></activity>
 
         <!-- 广播接收器-->
         <receiver android:name=".receiver.PushReceiver"></receiver>

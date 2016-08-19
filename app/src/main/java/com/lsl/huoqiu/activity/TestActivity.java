@@ -115,4 +115,9 @@ public class TestActivity extends AppCompatActivity {
     }
     private SingleGrid grid=null;
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mMessageReceiver);
+    }
 }
