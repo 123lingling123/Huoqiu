@@ -32,6 +32,7 @@ import com.lsl.huoqiu.R;
  * 设计思路：首先定义最外层小圆点的半径，外层细圆弧的宽度，内存宽圆弧的宽度，两个圆弧中间间隔的宽度，
  * 然后利用旋转画布来绘制文本，接着绘制两个圆弧的底色，接着根据传过来的数据绘制渐变色圆弧和原点
  * 利用ValueAnimator来设置动画效果
+ *
  * Created by Forrest on 16/8/12.
  */
 public class PercentView extends View{
@@ -84,6 +85,9 @@ public class PercentView extends View{
     private float[] pos;                // 当前点的实际位置
     private float[] tan;                // 当前点的tangent值,用于计算图片所需旋转的角度
     private Bitmap mBitmapBackDeepRed;  // 箭头图片
+    private Bitmap mBitmapBackYellow;  // 箭头图片
+    private Bitmap mBitmapBackPink;  // 箭头图片
+    private Bitmap mBitmapBackRed;  // 箭头图片
     private Matrix mMatrix;             // 矩阵,用于对图片进行一些操作
     private RectF outerArea;            //外圈的矩形
     private String tag;
@@ -91,6 +95,7 @@ public class PercentView extends View{
     private int textSizeTag;//名列前茅字体大小
     private int textSizeAim;//击败百分比字体大小
 
+    private Bitmap mBitmapBack;
     // 动效过程监听器
     private ValueAnimator.AnimatorUpdateListener mUpdateListener;
     private Animator.AnimatorListener mAnimatorListener;
@@ -150,8 +155,12 @@ public class PercentView extends View{
 
         pos = new float[2];
         tan = new float[2];
-        mBitmapBackDeepRed= BitmapFactory.decodeResource(context.getResources(), R.mipmap.blur_back_deep_red);
+        mBitmapBackDeepRed= BitmapFactory.decodeResource(context.getResources(), R.mipmap.blur_back_deep_deep);
+        mBitmapBackRed= BitmapFactory.decodeResource(context.getResources(), R.mipmap.blur_back_deep_red);
+        mBitmapBackPink= BitmapFactory.decodeResource(context.getResources(), R.mipmap.blur_back_deep_pink);
+        mBitmapBackYellow= BitmapFactory.decodeResource(context.getResources(), R.mipmap.blur_back_deep_yellow);
         mMatrix=new Matrix();
+
 
     }
 
@@ -193,8 +202,9 @@ public class PercentView extends View{
         paint.setStrokeWidth(1);
         paint.setTextAlign(Paint.Align.CENTER);
         for (int i=0;i<=10;i++){
+            //保存画布
             canvas.save();
-            //旋转角度
+            //旋转角度，第一个参数是旋转的角度、第二个参数和第三个参数是旋转中心点x和y
             canvas.rotate((float) (spaceAngle * i + -135 + spaceAngle), width / 2, radius);
             //画文字
             canvas.drawText(i * 10 + "", width / 2,  outerArcWidth + insideArcWidth + spaceWidth * 2, paint);
@@ -206,7 +216,7 @@ public class PercentView extends View{
         paint.setColor(grayColor);
         paint.setStrokeWidth(outerArcWidth);//outerArcWidth
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);//设置为圆角
         paint.setAntiAlias(true);
         //绘制最外层圆条底色
         outerArcRadius=radius-outerArcWidth;
@@ -238,14 +248,18 @@ public class PercentView extends View{
         shaderPaint.setAntiAlias(true);
         shaderPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));//shaderPaint.setColor(yellowColor);
         if (aimPercent>=0&&aimPercent<=20){
+//            int colorSweep[] = { yellowColor,yellowColor };
+//            float position[]={0.2f,0.7f};
+//            SweepGradient sweepGradient=new SweepGradient(width / 2, radius, colorSweep, position);
+//            shaderPaint.setShader(sweepGradient);
         }else if (aimPercent>20&&aimPercent<=60){
             int colorSweep[] = { yellowColor,pinkRedColor };
             float position[]={0.5f,0.7f};
             SweepGradient sweepGradient=new SweepGradient(width / 2, radius, colorSweep, position);
             shaderPaint.setShader(sweepGradient);
         }else if (aimPercent>60&&aimPercent<=90){
-            int colorSweep[] = { yellowColor,pinkRedColor,redColor };
-            float position[]={0.5f,0.7f,0.8f};
+            int colorSweep[] = {redColor, yellowColor,yellowColor,pinkRedColor,redColor };
+            float position[]={0.25f,0.35f,0.5f,0.7f,0.8f};
             SweepGradient sweepGradient=new SweepGradient(width / 2, radius, colorSweep, position);
             shaderPaint.setShader(sweepGradient);
         }else if (aimPercent>90){
@@ -256,19 +270,19 @@ public class PercentView extends View{
         }
         if (aimPercent<=10){//目的是为了
             drawInsideArc((float) (180 - floatAngel), (float) roateAngel, canvas);
-            drawOuterAcr((float) (180 - floatAngel), (float) roateAngel, canvas,mBitmapBackDeepRed,yellowColor);
+            drawOuterAcr((float) (180 - floatAngel), (float) roateAngel, canvas,mBitmapBack,yellowColor);
         }else if (aimPercent>10&&aimPercent<=20){
             drawInsideArc((float) (180 - floatAngel), (float) roateAngel, canvas);
-            drawOuterAcr((float) (180 - floatAngel), (float) roateAngel, canvas,mBitmapBackDeepRed,yellowColor);
+            drawOuterAcr((float) (180 - floatAngel), (float) roateAngel, canvas,mBitmapBack,yellowColor);
         }else if (aimPercent>20&&aimPercent<=60){
             drawInsideArc((float) (180 - floatAngel), (float) (roateAngel-(spaceAngle-floatAngel)), canvas);
-            drawOuterAcr((float) (180 - floatAngel), (float) (roateAngel - (spaceAngle - floatAngel)), canvas,mBitmapBackDeepRed,pinkRedColor);
+            drawOuterAcr((float) (180 - floatAngel), (float) (roateAngel - (spaceAngle - floatAngel)), canvas,mBitmapBack,pinkRedColor);
         }else if (aimPercent>60&&aimPercent<=90){
             drawInsideArc((float) (180 - floatAngel), (float) (roateAngel-(spaceAngle-floatAngel)), canvas);
-            drawOuterAcr((float) (180 - floatAngel), (float) (roateAngel - (spaceAngle - floatAngel)),canvas,mBitmapBackDeepRed,redColor);
+            drawOuterAcr((float) (180 - floatAngel), (float) (roateAngel - (spaceAngle - floatAngel)),canvas,mBitmapBack,redColor);
         }else {
             drawInsideArc((float) (180 - floatAngel), (float) (roateAngel-2*(spaceAngle-floatAngel)), canvas);
-            drawOuterAcr((float) (180 - floatAngel), (float) (roateAngel-2*(spaceAngle-floatAngel)), canvas,mBitmapBackDeepRed, deepRedColor);
+            drawOuterAcr((float) (180 - floatAngel), (float) (roateAngel-2*(spaceAngle-floatAngel)), canvas,mBitmapBack, deepRedColor);
         }
 
 
@@ -305,19 +319,21 @@ public class PercentView extends View{
 //        canvas.drawArc( new RectF(width/2 - outerArcRadius, radius - outerArcRadius, width/2  + outerArcRadius, radius + outerArcRadius),
 //                formDegree,
 //                toDegree, false, shaderPaint);
-        Path orbit = new Path();
-        //通过Path类画一个90度（180—270）的内切圆弧路径
-        orbit.addArc(outerArea, formDegree, toDegree);
-        // 创建 PathMeasure
-        PathMeasure measure = new PathMeasure(orbit, false);
-        measure.getPosTan(measure.getLength() * 1, pos, tan);
-        mMatrix.reset();
-        mMatrix.postTranslate(pos[0] - bitmap.getWidth() / 2, pos[1] - bitmap.getHeight() / 2);   // 将图片绘制中心调整到与当前点重合
-        canvas.drawPath(orbit, shaderPaint);//绘制外层的线条
-        canvas.drawBitmap(bitmap, mMatrix, bitmapPaint);//绘制
-        bitmapPaint.setColor(color);
-        //绘制实心小圆圈
-        canvas.drawCircle(pos[0], pos[1], 8, bitmapPaint);
+        if (toDegree!=0) {
+            Path orbit = new Path();
+            //通过Path类画一个90度（180—270）的内切圆弧路径
+            orbit.addArc(outerArea, formDegree, toDegree);
+            // 创建 PathMeasure
+            PathMeasure measure = new PathMeasure(orbit, false);
+            measure.getPosTan(measure.getLength() * 1, pos, tan);
+            mMatrix.reset();
+            mMatrix.postTranslate(pos[0] - bitmap.getWidth() / 2, pos[1] - bitmap.getHeight() / 2);   // 将图片绘制中心调整到与当前点重合
+            canvas.drawPath(orbit, shaderPaint);//绘制外层的线条
+            canvas.drawBitmap(bitmap, mMatrix, bitmapPaint);//绘制
+//            bitmapPaint.setColor(color);
+            //绘制实心小圆圈
+            canvas.drawCircle(pos[0], pos[1], 8, bitmapPaint);
+        }
     }
     /***
      * 4个色值由浅到深分别是 ffd200 ff5656 fa4040 f60157
@@ -393,6 +409,19 @@ public class PercentView extends View{
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 mAngel = (float) animation.getAnimatedValue()*aimPercent;
+                if (mAngel>=0&&mAngel<=20){
+                    bitmapPaint.setColor(yellowColor);
+                    mBitmapBack=mBitmapBackYellow;
+                }else if (mAngel>20&&mAngel<=60){
+                    bitmapPaint.setColor(pinkRedColor);
+                    mBitmapBack=mBitmapBackPink;
+                }else if (mAngel>60&&mAngel<=90){
+                    bitmapPaint.setColor(redColor);
+                    mBitmapBack=mBitmapBackRed;
+                }else {
+                    bitmapPaint.setColor(deepRedColor);
+                    mBitmapBack=mBitmapBackDeepRed;
+                }
 //                Log.i("TAG", "mAnimatorValue="+mAnimatorValue);
                 invalidate();
             }

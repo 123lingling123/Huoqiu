@@ -1,9 +1,12 @@
 package com.lsl.huoqiu;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.lsl.huoqiu.handler.CrashHandler;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 /**
  * Created by Forrest on 16/5/4.
@@ -21,7 +24,18 @@ public class AppContext extends Application {
         //收集错误日志
 //        CrashHandler.getInstance().init(getApplicationContext());
         Config.init(this);
+
+        refWatcher=LeakCanary.install(this);
+
     }
+
+    //增加监测内存泄漏的Leak
+    public static RefWatcher getRefWatcher(Context context) {
+        AppContext application = (AppContext) context.getApplicationContext();
+        return application.refWatcher;
+    }
+
+    private RefWatcher refWatcher;
 
     //是否开启手势密码
     public boolean isOpen(){

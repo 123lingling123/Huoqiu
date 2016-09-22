@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
@@ -61,6 +62,8 @@ public class StructProgress extends View {
     }
     private void initView(Context context){
         mPaint = new Paint();
+
+
         bgColor = context.getResources().getColor(R.color.struct_backgroud);
         rightColor = context.getResources().getColor(R.color.struct_right_red);
         leftColor = context.getResources().getColor(R.color.struct_left_red);
@@ -87,9 +90,10 @@ public class StructProgress extends View {
         mCanvas1 =new Canvas(Bitmap1);
         //进度条的背景
         mPathArc =new Path();
-        mPathArc.addArc(new RectF(0, mHeight-progressHeight, progressHeight, mHeight), 90, 270);//左半圆，其实是一个180°的扇形
-        mPathArc.addRect(progressHeight / 2, mHeight-progressHeight, mWidth - progressHeight / 2, mHeight, Path.Direction.CW);
-        mPathArc.addArc(new RectF(mWidth - progressHeight, mHeight-progressHeight, mWidth, mHeight), 180, 360);//右半圆，其实是一个180°的扇形
+//        mPathArc.addArc(new RectF(0, mHeight-progressHeight, progressHeight, mHeight), 90, 270);//左半圆，其实是一个180°的扇形
+//        mPathArc.addRect(progressHeight / 2, mHeight - progressHeight, mWidth - progressHeight / 2, mHeight, Path.Direction.CW);
+//        mPathArc.addArc(new RectF(mWidth - progressHeight, mHeight - progressHeight, mWidth, mHeight), 180, 360);//右半圆，其实是一个180°的扇形
+        mPathArc.addRect(0, mHeight - progressHeight, mWidth - progressHeight, mHeight, Path.Direction.CW);
 
 
 
@@ -98,7 +102,12 @@ public class StructProgress extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         mPaint.setColor(bgColor);
-        mCanvas1.drawPath(mPathArc, mPaint);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(10);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setAntiAlias(true);
+//        mCanvas1.drawPath(mPathArc, mPaint);
+        mCanvas1.drawRoundRect(new RectF(0, mHeight - progressHeight, mWidth - progressHeight, mHeight),progressHeight/2,progressHeight/2,mPaint);
         mPahtRecf=new Path();
         float max=getMax(beans);
         //绘制文字并且找到要凸显的进度
@@ -126,16 +135,24 @@ public class StructProgress extends View {
             }
         }else {
             //将进度设为0
-            progress=0;
+            progress = 0;
         }
         //画覆盖在上面的进度条
-        mPahtRecf.addRect(0, mHeight-progressHeight, progress * mWidth -progressHeight/2, mHeight, Path.Direction.CW);
-        mPahtRecf.addArc(new RectF(progress * mWidth -progressHeight,mHeight-progressHeight,progress * mWidth,mHeight),180,360);
-        LinearGradient lg=new LinearGradient(0,mHeight-progressHeight,  progress * mWidth,mHeight,leftColor,rightColor, Shader.TileMode.CLAMP);
+        mPahtRecf.addRect(0, mHeight - progressHeight, progress * mWidth - progressHeight / 2, mHeight, Path.Direction.CW);
+        mPahtRecf.addArc(new RectF(progress * mWidth - progressHeight, mHeight - progressHeight, progress * mWidth, mHeight), 180, 360);
+        LinearGradient lg=new LinearGradient(0,mHeight-progressHeight,  progress * mWidth,mHeight,leftColor, rightColor, Shader.TileMode.CLAMP);
         mPaintRed.setShader(lg);//设置渐变色
         mPaintRed.setColor(rightColor);
+        mPaintRed.setStrokeCap(Paint.Cap.ROUND);
+        mPaintRed.setStyle(Paint.Style.FILL);
+        mPaintRed.setStrokeWidth(10);
+        mPaintRed.setAntiAlias(true);
+
         mPaintRed.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));//
-        mCanvas1.drawPath(mPahtRecf, mPaintRed);
+
+        mCanvas1.drawRoundRect(new RectF(0, mHeight - progressHeight, progress * mWidth, mHeight), progressHeight / 2, progressHeight / 2, mPaintRed);
+//        mCanvas1.drawRect(0, mHeight - progressHeight, progress * mWidth, mHeight,mPaintRed);
+//        mCanvas1.drawPath(mPahtRecf, mPaintRed);
         //将此Bitmap绘制到canvas上
         canvas.drawBitmap(Bitmap1, 0, 0, null);
 

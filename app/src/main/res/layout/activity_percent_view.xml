@@ -9,7 +9,10 @@
         android:layout_height="200dp"
         android:background="@color/wheat"
         ></com.lsl.huoqiu.widget.PercentView>
-
+<Button
+    android:id="@+id/button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 
     <com.lsl.huoqiu.widget.LineChartView
         android:id="@+id/linear_chart"

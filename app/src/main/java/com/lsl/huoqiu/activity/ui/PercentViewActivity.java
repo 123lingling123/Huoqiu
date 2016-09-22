@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.lsl.huoqiu.R;
@@ -24,7 +26,8 @@ public class PercentViewActivity extends AppCompatActivity{
     private int progress= 0;
     private List<RecentlyIncomeBean> bean;
     private LineChartView mChartView;
-    private int aimPercent=97;
+    private int aimPercent=90;
+    private Button button;
 //    private double increaseValue=5;
 //    private Handler handler=new Handler() {
 //        @Override
@@ -58,19 +61,32 @@ public class PercentViewActivity extends AppCompatActivity{
         percentView= (PercentView) findViewById(R.id.percent_view);
         percentView.setAngel(aimPercent);
         percentView.setRankText("名列前茅", "90");
-
         //折线图
         mChartView= (LineChartView) findViewById(R.id.linear_chart);
         getData();
         LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(DeviceUtils.getWindowWidth(PercentViewActivity.this)*10*(bean.size()+1)/75,600);
-        Log.e("宽度",""+DeviceUtils.getWindowWidth(PercentViewActivity.this)*10*(bean.size()+1)/75);
+        Log.e("宽度", "" + DeviceUtils.getWindowWidth(PercentViewActivity.this) * 10 * (bean.size() + 1) / 75);
         mChartView.setLayoutParams(params);
-        mChartView.setBean(bean);
+//        mChartView.setBean(bean);
+
+
+
+
+        button= (Button) findViewById(R.id.button);
+
     }
     @Override
     protected void onResume() {
         super.onResume();
-//        handler.sendEmptyMessage(0x23);
+        aimPercent=0;
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               aimPercent+=2;
+                percentView.setAngel(aimPercent);
+                percentView.setRankText("测试",""+aimPercent);
+            }
+        });
     }
 
     private void getData() {

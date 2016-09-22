@@ -36,7 +36,7 @@ public class VerticalViewPagerActivity extends AppCompatActivity {
     private Handler handler=new Handler() {
         @Override
         public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
+            super.handleMessage(msg);
             if (mAdapter!=null){
                 if (mData!=null&&mData.size()>1){
                     switch (msg.what){
@@ -136,6 +136,14 @@ public class VerticalViewPagerActivity extends AppCompatActivity {
 
 
             return view;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (handler!=null){
+            handler.removeCallbacksAndMessages(null);
         }
     }
 }

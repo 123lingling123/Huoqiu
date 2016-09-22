@@ -174,4 +174,13 @@ public class HqPlanRoundActivity extends AppCompatActivity {
         });
     }
     private  int mDistance;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+
+
+
+    }
 }

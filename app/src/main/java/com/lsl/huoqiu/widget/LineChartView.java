@@ -135,7 +135,7 @@ public class LineChartView extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.i("LineChartView", "开始绘制"+count);
+        Log.d("LineChartView", "绘制次数记录" + count);
         count++;
         initHeight();
         Log.i("TAG", "数据的大小"+bean.size());
@@ -152,7 +152,7 @@ public class LineChartView extends View{
 //            mPaint.setStrokeWidth(2);
 //            canvas.drawLine(mSpaceWidth / 2, mViewHeight - mDateHeight - mSpaceHeight, mSpaceWidth * 3 / 4 + (mPositionHeight.size() - 1) * mSpaceWidth + mSpaceWidth / 2, mViewHeight - mDateHeight - mSpaceHeight, mPaint);
             long endTime=System.currentTimeMillis();
-            Log.i("LineChartView", "绘制结束" + (endTime-startTime));
+            Log.i("LineChartView", "绘制结束" + (endTime-startTime)+"ms");
         }
     }
 
@@ -308,10 +308,19 @@ public class LineChartView extends View{
             }
         }
         LogUtils.e("max" + max);
-        for (RecentlyIncomeBean item : bean) {
-            //添加每个Item的垂直高度
-            mPositionHeight.add((Float.parseFloat(item.getAmount()) / max * mLineHeight));
+        if (max>0) {
+            for (RecentlyIncomeBean item : bean) {
+                //添加每个Item的垂直高度
+                mPositionHeight.add((Float.parseFloat(item.getAmount()) / max * mLineHeight));
+            }
+        }else {
+            //当max的值为0.0时就，则高度应该都一样
+            for (RecentlyIncomeBean item : bean) {
+                //添加每个Item的垂直高度
+                mPositionHeight.add((float) 0.0);
+            }
         }
+
     }
 
     /***
@@ -367,6 +376,8 @@ public class LineChartView extends View{
     //View按下的初始位置
     private int startX=0;
     private int endX=0;
+    //记录移动的距离
+    private int offset;
     //这里应该加上Scroller惯性滑动的处理，使得滑动变的平滑
     //注意，触摸事件的响应范围仅限于该View的区域
     public boolean onTouchEvent(MotionEvent event){
@@ -390,9 +401,26 @@ public class LineChartView extends View{
                 rawY = (int)event.getY();
                 //限定移动范围
                 //手指移动的x轴和y轴偏移量分别为当前坐标-上次坐标
-                int offsetX = rawX - lastX;
-                if (offsetX>mSpaceWidth/2&&getLeft()<=0&&bean.size()>7){//向右移动
+                int offsetX = rawX - lastX;//向左边移动该值为负数，向右边移动该值为正数
+                //为了防止左右短时间左右摇摆的情况发生
+                if ((offsetX>0&&offset<0)||(offsetX<0&&offset>0)) {
+                    //两次相反但值是一样的就说明出现左右摇摆的情况
+                    if (offsetX+offset==0) {
+                        break;
+                    }
+                    //两次相差比较小也说明出现左右摇摆的情况
+                    if (offsetX+offset>5||offsetX+offset<5) {
+                        break;
+                    }
+                    if (offsetX+offset>-5||offsetX+offset<-5) {
+                        break;
+                    }
+                }
+                offset=offsetX;
+                if (offsetX>mSpaceWidth/2&&bean.size()>7){//向右移动
                     Log.e("TAG", "向右移动getLeft" + getLeft());
+                    Log.e("TAG", "向右移动getRight" + getRight());
+                    //限制向右边移的过多
                     if (offsetX>Math.abs(getLeft())){
                         offsetLeftAndRight(Math.abs(getLeft()));
                     }else {
@@ -406,9 +434,22 @@ public class LineChartView extends View{
 //                    Log.e("TAG","Right+++++getLeft"+getLeft());
 //                    Log.e("TAG","Right+++++getRight" +getRight());
                 }else if (bean.size()>7&&offsetX<-mSpaceWidth/2&&(getRight()>(DeviceUtils.getWindowWidth(mContext)))) {//向左移动
+                    //限制向左边移的过多
+                    if (offsetX<-(getLeft()+mViewWidth-DeviceUtils.getWindowWidth(mContext))){
+                        offsetLeftAndRight(-(getLeft()+mViewWidth-DeviceUtils.getWindowWidth(mContext)));
+                    }else {
+                        offsetLeftAndRight(offsetX);
+                    }
+//                    if ((mViewWidth-DeviceUtils.getWindowWidth(mContext)>Math.abs(getLeft()))){
+//
+//                        offsetLeftAndRight(offsetX);
+//
+//                    }
+                    Log.e("TAG", "mViewWidth" + mViewWidth);
+                    Log.e("TAG", "DeviceUtils.getWindowWidth(mContext)" + DeviceUtils.getWindowWidth(mContext));
                     Log.e("TAG", "向左移动getRight" + getRight());
                     Log.e("TAG", "向左移动getLeft" + getLeft());
-                    offsetLeftAndRight(offsetX);
+                    Log.e("TAG", "offsetX" + offsetX);
                     lastX = rawX;
                     lastY = rawY;
 
@@ -435,6 +476,17 @@ public class LineChartView extends View{
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void computeScroll() {
+        super.computeScroll();
+        if(mScroll.computeScrollOffset()){
+            ((View)getParent()).scrollTo(mScroll.getCurrX(), mScroll.getCurrY());
+            invalidate();//必须要调用
+        }
+
+
     }
 
     /**

@@ -20,6 +20,7 @@ import com.lsl.huoqiu.bean.Person;
 import com.lsl.huoqiu.parser.BaseBeanParser;
 import com.lsl.huoqiu.receiver.PushReceiver;
 import com.lsl.huoqiu.utils.AlarmUtils;
+import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,7 +79,8 @@ public class AlarmActivity extends AppCompatActivity{
             e.printStackTrace();
         }
         //打印JsonObject的内容
-        Log.e("AlarmActivity++++JsonObejct",jsonObject.toString());
+//        Log.e("AlarmActivity++++JsonObejct",jsonObject.toString());
+        Logger.json(jsonObject.toString());
         textView.setText(jsonObject.toString());
         //开始解析Json串，并将其转化为JavaBean
         try {
@@ -86,7 +88,7 @@ public class AlarmActivity extends AppCompatActivity{
                     new TypeToken<BaseBean<List<Person>>>() {
                     }).parse(jsonObject.toString().getBytes());
             //打印解析出来的message字段
-            Log.e("AlarmActivity++++JsonObejct", personBaseBean.getMessage());
+//            Log.e("AlarmActivity++++JsonObejct", personBaseBean.getMessage());
             //将解析出来的JavaBean拆开进行显示：
             StringBuilder sb=new StringBuilder();
             sb.append(personBaseBean.getMessage()+"\n");
@@ -96,7 +98,8 @@ public class AlarmActivity extends AppCompatActivity{
                         +"  年龄是："+personBaseBean.getData().get(i).getAge()+"\n");
             }
             //打印JavaBean 的内容
-            Log.e("AlarmActivity++++JsonObejct",sb.toString());
+//            Log.e("AlarmActivity++++JsonObejct",sb.toString());
+            Logger.d(sb.toString());
             textviewparser.setText(sb.toString());
         } catch (ParseException e) {
             e.printStackTrace();
