@@ -198,7 +198,8 @@
     <color name="percent_gray">#d3dae0</color>
     <!--4个色值由浅到深分别是 ffd200 ff5656 fa4040 f60157-->
 
-
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="background_tab_presse">#ececec</color>
 
 
 

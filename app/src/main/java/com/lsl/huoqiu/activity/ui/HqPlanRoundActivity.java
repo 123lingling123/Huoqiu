@@ -32,6 +32,8 @@ public class HqPlanRoundActivity extends AppCompatActivity {
     private RelativeLayout view_contain;
     private RelativeLayout text_contain;
     private TextView text_rate;
+    private LinearLayout linear_zoom_header;
+    private LinearLayout linear_top_content;
     private View right;
     private Handler handler=new Handler() {
         @Override
@@ -106,6 +108,8 @@ public class HqPlanRoundActivity extends AppCompatActivity {
                 R.layout.pull_zoom_headview, null, false);
         View contentView = LayoutInflater.from(this).inflate(
                 R.layout.pull_zoom_content, null, false);
+        View zoom = LayoutInflater.from(this).inflate(
+                R.layout.pull_header_view, null, false);
         ImageView zoomView = new ImageView(this);
         zoomView.setImageResource(R.mipmap.test);
         zoomView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -114,13 +118,21 @@ public class HqPlanRoundActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metric);
         width = metric.widthPixels; // 屏幕宽度（像素）
         // height = metric.heightPixels; // 屏幕高度（像素）
+        //
+        linear_zoom_header= (LinearLayout) zoom.findViewById(R.id.linear_zoom_header);
+        linear_zoom_header.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,200));
+        linear_top_content= (LinearLayout) zoom.findViewById(R.id.linear_top_content);
+        linear_top_content.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,200));
+
+
         pull_zoom.setHeaderView(heardView);
-        pull_zoom.setZoomView(zoomView);
+        pull_zoom.setZoomView(zoom);
         pull_zoom.setScrollContentView(contentView);
         // 设置照片的高度
         LinearLayout.LayoutParams localObject = new LinearLayout.LayoutParams(
                 width, (int) (10.0F * (width / 16.0F)));
         pull_zoom.setHeaderLayoutParams(localObject);
+
 
 
         listView = (LinearLayout) pull_zoom.getRootView()

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/fragment_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dp50"
+        android:text="测试"/>
+    <com.lsl.huoqiu.widget.PullToRefreshListView
+        xmlns:lv="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/struct_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none"
+        lv:is_show_header="true" />
+
+</LinearLayout>

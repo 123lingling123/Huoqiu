@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animation-list android:oneshot="false"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="100" android:drawable="@drawable/money1" />
+    <item android:duration="100" android:drawable="@drawable/money2" />
+    <item android:duration="100" android:drawable="@drawable/money3" />
+    <item android:duration="100" android:drawable="@drawable/money4" />
+    <item android:duration="100" android:drawable="@drawable/money5" />
+    <item android:duration="100" android:drawable="@drawable/money6" />
+    <item android:duration="100" android:drawable="@drawable/money7" />
+    <item android:duration="100" android:drawable="@drawable/money8" />
+    <item android:duration="100" android:drawable="@drawable/money9" />
+    <item android:duration="100" android:drawable="@drawable/money10" />
+</animation-list>

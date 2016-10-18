@@ -21,9 +21,12 @@ import com.lsl.huoqiu.activity.ui.HuoQiuProgressActivity;
 import com.lsl.huoqiu.activity.ui.LineChartViewActivity;
 import com.lsl.huoqiu.activity.ui.MainActivity;
 import com.lsl.huoqiu.activity.ui.MultiViewPagerActivity;
+import com.lsl.huoqiu.activity.ui.NewMineActivity;
+import com.lsl.huoqiu.activity.ui.PagerSlidingTabActivity;
 import com.lsl.huoqiu.activity.ui.PercentViewActivity;
 import com.lsl.huoqiu.activity.ui.PullZoomActivity;
 import com.lsl.huoqiu.activity.ui.StructDetaliProgressActivity;
+import com.lsl.huoqiu.activity.ui.StructorActivity;
 import com.lsl.huoqiu.activity.ui.VerticalViewPagerActivity;
 
 import java.util.ArrayList;
@@ -80,6 +83,12 @@ public class UIActivity extends AppCompatActivity{
                     intent.setClass(UIActivity.this,PercentViewActivity.class);
                 }else if (position==15){
                     intent.setClass(UIActivity.this,LineChartViewActivity.class);
+                }else if (position==16){
+                    intent.setClass(UIActivity.this,StructorActivity.class);
+                }else if (position==17){
+                    intent.setClass(UIActivity.this,NewMineActivity.class);
+                }else if (position==18){
+                    intent.setClass(UIActivity.this,PagerSlidingTabActivity.class);
                 }
                 startActivity(intent);
             }
@@ -105,6 +114,9 @@ public class UIActivity extends AppCompatActivity{
         data.add("结构化在投详情柱状图");
         data.add("击败百分比");
         data.add("折线图");
+        data.add("结构化理财新版界面");
+        data.add("我的新版界面");
+        data.add("PagerSlidingTabActivity");
 
         return data;
     }

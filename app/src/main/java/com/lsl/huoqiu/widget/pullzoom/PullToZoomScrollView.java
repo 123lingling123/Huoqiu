@@ -138,7 +138,6 @@ public class PullToZoomScrollView extends PullToZoomBase<ScrollView> {
         if (zoomView != null) {
             mZoomView = zoomView;
             mZoomView.setPadding(zoomView.getPaddingLeft(),-1*mHeaderDis,zoomView.getPaddingRight(),zoomView.getPaddingBottom());
-
             updateHeaderView();
         }
     }
@@ -149,11 +148,13 @@ public class PullToZoomScrollView extends PullToZoomBase<ScrollView> {
 
             if (mZoomView != null) {
                 mHeaderContainer.addView(mZoomView);
+                mZoomView.invalidate();
             }
 
             if (mHeaderView != null) {
                 mHeaderContainer.addView(mHeaderView);
             }
+            mHeaderContainer.invalidate();
         }
     }
 
@@ -236,7 +237,7 @@ public class PullToZoomScrollView extends PullToZoomBase<ScrollView> {
 
         mRootContainer.setClipChildren(false);
         mHeaderContainer.setClipChildren(false);
-
+        mRootView.setClipChildren(false);
         mRootView.addView(mRootContainer);
     }
 

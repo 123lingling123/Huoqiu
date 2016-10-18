@@ -31,7 +31,7 @@ public class VerticalViewPagerActivity extends AppCompatActivity {
     private IndexAdapter mAdapter;
     private static final int AUTO_MEG = 606;
     private static final int FAN_MEG = 607;
-    private static final long AUTO_DELAY = 2000;
+    private static final long AUTO_DELAY = 100;
     private int titleHeight= DeviceUtils.getWindowHeight(AppContext.getInstance())/10;
     private Handler handler=new Handler() {
         @Override
@@ -76,6 +76,13 @@ public class VerticalViewPagerActivity extends AppCompatActivity {
         mData.add(new String("第一"));
         mData.add(new String("第er"));
         mData.add(new String("第san"));
+        mData.add(new String("第si"));
+        mData.add(new String("第si"));
+        mData.add(new String("第si"));
+        mData.add(new String("第si"));
+        mData.add(new String("第si"));
+        mData.add(new String("第si"));
+        mData.add(new String("第si"));
         mData.add(new String("第si"));
         initListView();
 

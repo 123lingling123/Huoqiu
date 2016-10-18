@@ -4,13 +4,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blanchedalmond"
+    android:background="@color/wheat"
     android:orientation="vertical">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:background="@color/white">
-    <TextView
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#fd563b"/>
+    <com.lsl.huoqiu.widget.increasenum.RiseNumberTextView
+        android:id="@+id/risenumber_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:shadowColor="#d7d7d7"
@@ -21,4 +26,76 @@
         android:textColor="#fa4040"
         android:textSize="38sp"/>
 </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linear_text"
+        android:layout_width="match_parent"
+        android:background="@color/wheat"
+        android:orientation="vertical"
+        android:layout_height="@dimen/dp100">
+        <TextView
+            android:id="@+id/top_text"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:gravity="bottom"
+            android:text="昨日收益"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/content_money"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:gravity="top"
+            android:text="9.90"
+            android:textColor="@color/red"
+            android:textSize="25sp"/>
+
+
+
+
+    </LinearLayout>
+    <!--<com.lsl.huoqiu.widget.MineTopLayout-->
+        <!--android:id="@+id/mine_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:background="@color/red">-->
+
+    <!--</com.lsl.huoqiu.widget.MineTopLayout>-->
+    <ImageView
+        android:id="@+id/img_content_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/wallet_huoqiu"
+        />
+
+    <com.lsl.huoqiu.widget.FlingTextView
+        android:id="@+id/fling_text"
+        android:layout_width="match_parent"
+        android:background="@color/wheat"
+
+        android:layout_height="20dp">
+
+
+    </com.lsl.huoqiu.widget.FlingTextView>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/wallet_huoqiu"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/wallet_huoqiu"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/wallet_huoqiu"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/wallet_huoqiu"
+        />
 </LinearLayout>

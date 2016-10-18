@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+    android:id="@+id/linear_zoom_header"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="vertical"
+    >
+    <ImageView
+        android:id="@+id/coin_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/coin_huoqiu"/>
+
+
+
+    <ImageView
+        android:id="@+id/coin_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/coin_huoqiu"/>
+
+
+    <ImageView
+        android:id="@+id/coin_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/coin_huoqiu"/>
+
+    <com.lsl.huoqiu.widget.MineTopLayout
+        android:id="@+id/linear_top_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+            <ImageView
+                android:id="@+id/top_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/wallet_huoqiu"
+                android:layout_marginBottom="5dp"
+                />
+            <ImageView
+                android:id="@+id/top_image_gif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/wallet_huoqiu"
+                android:layout_marginBottom="5dp"
+                />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/top_text_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:orientation="vertical"
+
+            android:paddingLeft="10dp"
+            >
+
+            <TextView
+                android:id="@+id/top_text"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="bottom"
+                android:text="昨日收益"
+                android:textColor="@color/black"/>
+
+            <com.lsl.huoqiu.widget.increasenum.RiseNumberTextView
+                android:id="@+id/top_money"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:gravity="top"
+                android:text="0.0"
+                android:textColor="@color/red"
+                android:textSize="25sp"/>
+
+
+        </LinearLayout>
+
+
+    </com.lsl.huoqiu.widget.MineTopLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+
